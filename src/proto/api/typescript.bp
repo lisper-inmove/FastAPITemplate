@@ -1,0 +1,43 @@
+# v1: 生成到单独的文件
+# #!/bin/bash
+#
+# # Directory containing the .proto files
+# PROTO_DIR="."
+#
+# # Output directory for the compiled files
+# OUT_DIR="."
+#
+# # Create the output directory if it doesn't exist
+# mkdir -p $OUT_DIR
+#
+# # Loop over all .proto files in the directory
+# for PROTO_FILE in $PROTO_DIR/*.proto
+# do
+#   # Get the base name of the file
+#   BASE_NAME=$(basename $PROTO_FILE .proto)
+#
+#   # Compile the .proto file to a static JavaScript module
+#   npx pbjs -t static-module -w commonjs -o $OUT_DIR/$BASE_NAME.js $PROTO_FILE
+#
+#   # Generate TypeScript definitions for the static JavaScript module
+#   npx pbts -o $OUT_DIR/$BASE_NAME.d.ts $OUT_DIR/$BASE_NAME.js
+# done
+
+#!/bin/bash
+
+# Directory containing .proto files
+PROTO_DIR="."
+
+# Output JavaScript file
+JS_FILE="./api.js"
+
+# Output TypeScript definition file
+TS_FILE="./api.d.ts"
+
+# Compile .proto files into a single JavaScript file
+# echo "npx pbjs -t static-module -w commonjs -o $JS_FILE $PROTO_DIR/*.proto"
+
+# Generate TypeScript definition file from the JavaScript file
+# echo "npx pbts -o $TS_FILE $JS_FILE"
+
+npx pbjs --ts $TS_FILE $PROTO_DIR/*.proto
