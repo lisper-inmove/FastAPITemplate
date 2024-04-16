@@ -9,13 +9,12 @@ function walk_proto() {
             continue
         elif [[ -f $d ]];then
              if [[ ${d##*.} = "proto" ]];then
-                c="python -m grpc_tools.protoc -I${ipath}"
+                c="protoc $d --python_out=. -I${ipath}"
                 for inc_path in ${include_path[@]};do
                     if [ -d $inc_path ];then
                         c="$c -I${inc_path}"
                     fi
                 done
-                c="$c --protobuf-to-pydantic_out=. $d"
                 `$c`
                 echo "$c ==> $?"
             fi
