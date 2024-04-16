@@ -3,6 +3,7 @@ dev:
 
 api:
 	cd src/proto && make api-python
+	cd src/proto && make api-typescript
 entity:
 	cd src/proto && make entity
 
